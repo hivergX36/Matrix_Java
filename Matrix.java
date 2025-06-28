@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class Matrix {
     private int rows;
     private int cols;
@@ -11,17 +15,17 @@ public class Matrix {
 
 
     public Matrix(String filename){
-         File input = new File(name);
+         File input = new File(filename);
             try (Scanner scanner = new Scanner(input)) {
                 if (scanner.hasNextLine()) {
-                    String[] dimensions = scanner.nextLine().split(" ");
-                    this.rows = Integer.parseInt(dimensions[0]);
-                    this.cols = Integer.parseInt(dimensions[1]);
+                    String[] values = scanner.nextLine().split(" ");
+                    this.rows = Integer.parseInt(values[0]);
+                    this.cols = Integer.parseInt(values[1]);
                     this.data = new double[rows][cols];
     
                     for (int i = 0; i < rows; i++) {
                         if (scanner.hasNextLine()) {
-                            String[] values = scanner.nextLine().split(" ");
+                            values = scanner.nextLine().split(" ");
                             for (int j = 0; j < cols; j++) {
                                 data[i][j] = Double.parseDouble(values[j]);
                             }
@@ -48,11 +52,20 @@ public class Matrix {
         return data[row][col];
     }
 
-    public int getRows(int row) {
+    public int getNbRows() {
         return rows;
     }
 
-    public int getCols() {
+    public int getNbCols() {
         return cols;
+    }
+
+    void display_matrix() {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                System.out.print(data[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 }
