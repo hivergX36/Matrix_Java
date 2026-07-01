@@ -1,0 +1,10 @@
+# Fichiers compilés
+*.class
+*.jar
+!lib/*.jar  # On garde les .jar dans lib/
+
+# Fichiers IDE (VSCode, etc.)
+.vscode/
+.idea/
+.out/
+!/src/*.java
